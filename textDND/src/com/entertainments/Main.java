@@ -4,21 +4,32 @@ import java.util.*;
 
 public class Main {
 
-    String answer = "";
-    String name = "";
+    public static String name = "";
+    public static String answer = "";
+    public static boolean characterLoop = false;
 
-    public void main() {
+    public static void main(String[] arg) {
 
+        characterName();
+
+    }
+
+    public static void characterName() {
+        characterLoop = true;
+        Decisions.decisionLoopName = false;
         Scanner userName = new Scanner(System.in);
         while (true) {
+        while (characterLoop) {
             System.out.println("WARNING: Once a NAME is confirmed you can not change it later on.");
             System.out.println(" ");
             System.out.println("Enter a NAME or your character below.");
             System.out.print("I should be called... ");
             name = userName.nextLine();
             if (name.trim().length() >= 3 &&
-                    name.trim().length() <= 32)
-                break;
+                name.trim().length() <= 32) {
+                characterLoop = false;
+                Decisions.decisionLoopName = true;
+            } else
             System.out.println(" ");
             System.out.println(" ");
             System.out.println("***************************************************************************");
@@ -31,37 +42,9 @@ public class Main {
             System.out.println("***************************************************************************");
             System.out.println(" ");
             System.out.println(" ");
-
         }
-    }
-        public void nameChoice() {
-
-            Scanner decision = new Scanner(System.in);
-            while (true){
-            answer = decision.nextLine().trim().toLowerCase();
-            switch (answer) {
-                case "y":
-                case "ok":
-                case "yes":
-                case "okay":
-                case "agree":
-                case "accept":
-                case "confirm":
-                case "positive":
-                    System.out.println("I like how \"" + name + "\" sounds.");
-                    break;
-                case "n":
-                case "no":
-                case "nah":
-                case "nope":
-                case "deny":
-                case "disagree":
-                case "negative":
-                    break;
-                default:
-
-            }
-            }
+            Decisions.decisionCharacterName();
+        }
     }
 }
 
