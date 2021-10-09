@@ -15,10 +15,10 @@ public class Main {
     }
 
     public static void characterName() {
+        while (true) {
         characterLoop = true;
         Decisions.decisionLoopName = false;
         Scanner userName = new Scanner(System.in);
-        while (true) {
         while (characterLoop) {
             System.out.println("WARNING: Once a NAME is confirmed you can not change it later on.");
             System.out.println(" ");
@@ -26,24 +26,13 @@ public class Main {
             System.out.print("I should be called... ");
             name = userName.nextLine();
             if (name.trim().length() >= 3 &&
-                name.trim().length() <= 32) {
+                    name.trim().length() <= 32) {
                 characterLoop = false;
                 Decisions.decisionLoopName = true;
-            } else
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println("***************************************************************************");
-            System.out.println("***************************************************************************");
-            System.out.println("**                                                                       **");
-            System.out.println("**                         ERROR: CHARACTER NAME                         **");
-            System.out.println("**     ERROR: Character name is not between 3 and 32 characters long     **");
-            System.out.println("**                                                                       **");
-            System.out.println("***************************************************************************");
-            System.out.println("***************************************************************************");
-            System.out.println(" ");
-            System.out.println(" ");
+            }
+            Errors.errorCharacterName();
         }
-            Decisions.decisionCharacterName();
+        Decisions.decisionCharacterName();
         }
     }
 }

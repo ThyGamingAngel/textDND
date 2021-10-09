@@ -4,61 +4,51 @@ import java.util.*;
 
 public class Main {
 
+    public static String name = "";
+    public static String answer = "";
+    public static boolean characterLoop = false;
+
     public static void main(String[] arg) {
 
-        String name = "";
-        String answer = "";
-        // ASKING CHARACTER NAME
-        Scanner userName = new Scanner(System.in);
-        while (true) {
-            System.out.println("Enter a Name for your Character below.");
-            System.out.print("Character Name: ");
-            name = userName.nextLine();
-            if (name.trim().length() >= 3 && name.trim().length() <= 32)
-                break;
-            System.out.println("");
-            System.out.println("");
-            System.out.println("***************************************************************");
-            System.out.println("***************************************************************");
-            System.out.println("**                                                           **");
-            System.out.println("**                        ERROR: NAME                        **");
-            System.out.println("**    ERROR: Character Name needs to be between 3 and 32.    **");
-            System.out.println("**                                                           **");
-            System.out.println("***************************************************************");
-            System.out.println("***************************************************************");
-            System.out.println("");
-            System.out.println("");
-        }
-        // CONFIRM CHARACTER NAME
-        Scanner decision = new Scanner(System.in);
-        System.out.println("Are you sure you want to be named \"" + name + "\"?");
-        System.out.print("You say... ");
-        while (true) {
-            answer = decision.nextLine().trim().toLowerCase();
-            if (answer.equals("yes") || answer.equals("okay") || answer.equals("agree") || answer.equals("accept") || answer.equals("confirm")) {
-
-                break;
-            } else if (answer.equals("no") || answer.equals("nope") || answer.equals("deny") || answer.equals("disagree") || answer.equals("negative")) {
-
-                break;
-            }
-            System.out.println("");
-            System.out.println("");
-            System.out.println("************************************************************************************");
-            System.out.println("************************************************************************************");
-            System.out.println("**                                                                                **");
-            System.out.println("**                                ERROR: DECISION                                 **");
-            System.out.println("**    ERROR: Unknown Decision statement, please only use what is listed below:    **");
-            System.out.println("**      AGREEMENTS: y, ok, yes, okay, agree, accept, OR confirm                   **");
-            System.out.println("** **");
-            System.out.println("** **");
-            System.out.println("");
-            System.out.println("");
-        }
-
+        characterName();
 
     }
+
+    public static void characterName() {
+        characterLoop = true;
+        Decisions.decisionLoopName = false;
+        Scanner userName = new Scanner(System.in);
+        while (true) {
+        while (characterLoop) {
+            System.out.println("WARNING: Once a NAME is confirmed you can not change it later on.");
+            System.out.println(" ");
+            System.out.println("Enter a NAME or your character below.");
+            System.out.print("I should be called... ");
+            name = userName.nextLine();
+            if (name.trim().length() >= 3 &&
+                name.trim().length() <= 32) {
+                characterLoop = false;
+                Decisions.decisionLoopName = true;
+            } else
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println("***************************************************************************");
+            System.out.println("***************************************************************************");
+            System.out.println("**                                                                       **");
+            System.out.println("**                         ERROR: CHARACTER NAME                         **");
+            System.out.println("**     ERROR: Character name is not between 3 and 32 characters long     **");
+            System.out.println("**                                                                       **");
+            System.out.println("***************************************************************************");
+            System.out.println("***************************************************************************");
+            System.out.println(" ");
+            System.out.println(" ");
+        }
+            Decisions.decisionCharacterName();
+        }
+    }
 }
+
+
 /*
 *   MOTION ACTIONS: Sleep, Nap, Lay, Sit, Wait, Stare, Amble, Walk, Sprint, Run, Mine, Strike,-
 *   Punch, Attack(For Bows and Ranged Attacks), Special Attack (Name), Special Ability (Name)
